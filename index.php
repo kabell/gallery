@@ -13,7 +13,7 @@ gallery::init();
     <link rel="stylesheet" href="css/blueimp-gallery.css">
     <link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/align.js"></script>
+    <script src="js/alignn.js"></script>
     <script src="js/lazyload.js"></script>
 
 
