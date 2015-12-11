@@ -14,6 +14,8 @@ gallery::init();
     <link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/align.js"></script>
+    <script src="js/lazyload.js"></script>
+
 
     <style>
         img{
@@ -83,7 +85,7 @@ gallery::init();
             <?php foreach(gallery::listImages() as $value){
                 $size = getimagesize('data'.$value);
                 echo "<a href=\"index.php?image=".$value."\" title='".end((explode('/',$value)))."' data-gallery>
-                    <img class='align' src=\"index.php?thumb=".$value."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">
+                    <img class='align lazy img-responsive' src=\"index.php?thumb=".$value."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">
                 </a>\n";
             } ?>
         </div>
