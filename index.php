@@ -16,7 +16,12 @@ function isMobile() {
     <meta charset="utf-8">
     <title><?php echo end((explode('/',gallery::$name))); ?></title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <?php if(isMobile()){?>
+    <link rel="stylesheet" href="css/blueimp-gallery_mobile.css">
+    <?php }else{ ?>
     <link rel="stylesheet" href="css/blueimp-gallery.css">
+    <?php };?>
+
     <link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/align.js"></script>
