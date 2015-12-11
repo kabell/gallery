@@ -85,7 +85,7 @@ gallery::init();
             <?php foreach(gallery::listImages() as $value){
                 $size = getimagesize('data'.$value);
                 echo "<a href=\"index.php?image=".$value."\" title='".end((explode('/',$value)))."' data-gallery>
-                    <img class='align lazy img-responsive' src=\"index.php?thumb=".$value."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">
+                    <img class='align lazy' data-original=\"index.php?thumb=".$value."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">
                 </a>\n";
             } ?>
         </div>
@@ -102,7 +102,11 @@ gallery::init();
     </script>
 
 
-
+    <script type="text/javascript" charset="utf-8">
+    $(function() {
+       $("img.lazy").lazyload();
+    });
+    </script>
 
 
 </body>
