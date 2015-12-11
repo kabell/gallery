@@ -1,6 +1,12 @@
 <?php
 include 'src/gallery.php';
 gallery::init();
+
+function isMobile() {
+    return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+}
+
+
  ?>
 
 
@@ -13,7 +19,7 @@ gallery::init();
     <link rel="stylesheet" href="css/blueimp-gallery.css">
     <link rel="stylesheet" href="css/bootstrap-image-gallery.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="js/alignn.js"></script>
+    <script src="js/align.js"></script>
     <script src="js/lazyload.js"></script>
 
 
@@ -82,11 +88,12 @@ gallery::init();
                 </a>\n";
             } ?>
 
-            <?php foreach(gallery::listImages() as $value){
+            <?php $pocet=0;
+                foreach(gallery::listImages() as $value){
                 $size = getimagesize('data'.$value);
-                echo "<a href=\"index.php?image=".$value."\" title='".end((explode('/',$value)))."' data-gallery>
-                    <img class='align lazy' data-original=\"index.php?thumb=".$value."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">
-                </a>\n";
+                echo "<a href=\"index.php?image=".$value."\" title='".end((explode('/',$value)))."' data-gallery>";
+                    if(!isMobile() || $pocet++ <30) echo "<img class='align lazy' data-original=\"index.php?thumb=".$value."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">";
+                echo "</a>\n";
             } ?>
         </div>
 
