@@ -88,16 +88,16 @@ function isMobile() {
 
         <div id="links">
             <?php  foreach(gallery::listDirs() as $value){
-                echo "<a href=\"?dir=".$value."\">
-                    <img  class='align' src=\"?folder=".end((explode('/',$value)))."\" data-width='433' data-height='312'>
+                echo "<a href=\"?dir=".htmlspecialchars(urlencode($value))."\">
+                    <img  class='align' src=\"?folder=".urlencode(end((explode('/',$value))))."\" data-width='433' data-height='312'>
                 </a>\n";
             } ?>
 
             <?php $pocet=0;
                 foreach(gallery::listImages() as $value){
                 $size = getimagesize('data'.$value);
-                echo "<a href=\"index.php?image=".$value."\" title='".end((explode('/',$value)))."' data-gallery>";
-                    if(!isMobile() || $pocet++ <30) echo "<img class='align lazy' data-original=\"index.php?thumb=".$value."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">";
+                echo "<a href=\"index.php?image=".htmlspecialchars(urlencode($value))."\" title='".end((explode('/',$value)))."' data-gallery>";
+                    if(!isMobile() || $pocet++ <30) echo "<img class='align lazy' data-original=\"index.php?thumb=".htmlspecialchars(urlencode($value))."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">";
                     else echo "Obrazok";
                 echo "</a>\n";
             } ?>
