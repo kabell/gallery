@@ -97,7 +97,7 @@ function isMobile() {
                 foreach(gallery::listImages() as $value){
                 $size = getimagesize('data'.$value);
                 echo "<a href=\"index.php?image=".htmlspecialchars(urlencode($value))."\" title='".end((explode('/',$value)))."' data-gallery>";
-                    if(!isMobile() || $pocet++ <30) echo "<img class='align lazy' data-original=\"index.php?thumb=".htmlspecialchars(urlencode($value))."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">";
+                    if(!isMobile() || $pocet++ <200) echo "<img class='align lazy' data-original=\"index.php?thumb=".htmlspecialchars(urlencode($value))."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">";
                     else echo "Obrazok";
                 echo "</a>\n";
             } ?>
