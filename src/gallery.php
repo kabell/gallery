@@ -59,6 +59,14 @@ public static function init(){
         self::folder($text);
         exit();
     }
+    else if(isset($_GET['rotate'])){
+        if(self::setFile($_GET['rotate'])){
+            $mode = self::IMAGE;
+            self::rotate();
+            exit();
+        }
+    }
+
     else{
         if(self::setDir(''))
             $mode = self::DIR;
@@ -228,6 +236,28 @@ public static function randomThumbnail($folder){
 
 
 }
+
+private static function rotate(){
+        $fullpath = self::$full_path;
+        $path = substr($fullpath,0,strrpos($fullpath,'/'));
+        $filename = substr($fullpath,strrpos($fullpath,'/')+1);
+
+        $src = imagecreatefromstring(file_get_contents(self::$full_path));
+        $rotate = imagerotate($src, 270, 0);
+        imagedestroy($src);
+        imagejpeg($rotate,self::$full_path); // adjust format as needed
+        imagedestroy($rotate);
+        //rotate thumbnail
+        $src = imagecreatefromstring(file_get_contents($path."/.thumb/".$filename));
+        $rotate = imagerotate($src, 270, 0);
+        imagedestroy($src);
+        imagejpeg($rotate,$path."/.thumb/".$filename); // adjust format as needed
+        imagedestroy($rotate);
+        self::getThumb();
+
+}
+
+
 
 public static function listDirs(){
     $list = preg_grep('/^([^.])/', scandir(self::$full_path));
