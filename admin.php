@@ -39,7 +39,7 @@ function isMobile() {
         <div class='container'>
             <div class='row'>
                 <div class='col-sm-5'>
-                    <?php if(gallery::$name!=''): ?><a href='?dir=<?php echo gallery::$parent;?>'><img src='/img/back.png'></a><?php endif;?>
+                    <?php if(gallery::$name!=''): ?><a href='?dir=<?php echo gallery::$parent;?>'><img src='img/back.png'></a><?php endif;?>
                 </div>
                 <div class='col-sm-7'>
                     <h2><?php echo gallery::$name; ?></h2>
