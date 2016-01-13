@@ -59,10 +59,10 @@ function isMobile() {
             <?php $pocet=0;
                 foreach(gallery::listImages() as $value){
                 $size = getimagesize('data'.$value);
-                echo "<a href=\"index.php?image=".htmlspecialchars(urlencode($value))."\" title='".end((explode('/',$value)))."' data-gallery>";
+                echo "<a href='#' onClick=\"$('#thumb".$pocet."').attr('src', 'index.php?rotate=".htmlspecialchars(urlencode($value))."'+'&date=' + new Date().getTime()); return false;\" title='".end((explode('/',$value)))."' data-gallery>";
                     echo "<img id='thumb".$pocet."' class='align lazy' src=\"index.php?thumb=".htmlspecialchars(urlencode($value))."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">";
 
-                echo "</a><a href='#' onClick=\"$('#thumb".$pocet."').attr('src', 'index.php?rotate=".htmlspecialchars(urlencode($value))."'+'&date=' + new Date().getTime()); return false;\">Rotate</a><br/>\n";
+                echo "</a>\n";
                 $pocet++;
             } ?>
         </div>
