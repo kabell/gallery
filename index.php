@@ -1,5 +1,5 @@
 <?php
-include 'src/gallerynew.php';
+include 'src/gallery.php';
 
 if(isset($_GET['image'])){
     $item = new Image($_GET['image']);
