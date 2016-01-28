@@ -48,7 +48,7 @@ class Item extends Settings{
 
         if(is_dir($this->fullPath))
             $this->type = self::DIR;
-        else if(in_array($ex,$this->video))
+        else if(in_array($ex,$this->video) && substr($this->getBaseName(),10)=='converted_')
             $this->type = self::VIDEO;
         else if(in_array($ex,$this->image))
             $this->type = self::IMAGE;
@@ -88,11 +88,11 @@ class Item extends Settings{
     }
 
     public function getURL(){
-        return '/'.$this->dataDir.'/'.$this->getPath();
+        return $this->dataDir.'/'.$this->getPath();
     }
 
     public function getThumbAddress(){
-        return "/img/back.png";
+        return $this->rootPrefix.'/'.$this->dataDir.'/'.$this->getParentDirectory().'/.thumb/'.$this->getBaseName().'.jpg';
     }
 
 }
