@@ -81,15 +81,15 @@
                     $size = getimagesize($value->fullPath);
                     echo "<a oncontextmenu=\"$('#thumb".$pocet."').attr('src', 'index.php?rotate=".htmlspecialchars(urlencode($value->getPath()))."'+'&date=' + new Date().getTime()); return false;\" href=\"?image=".htmlspecialchars(urlencode($value->getPath()))."\" title='".$value->getBaseName()."' data-gallery>";
                         echo "<img id='thumb".$pocet."' class='align lazy' data-original=\"?thumb&image=".htmlspecialchars(urlencode($value->getPath()))."\" data-width=\"".$size[0]."\" data-height=\"".$size[1]."\">";
-
                     echo "</a>\n";
                 }
                 else if($value->isVideo()){
-                    echo "<a href=\"?image=".htmlspecialchars(urlencode($value->getPath()))."\" title='".$value->getBaseName()."' data-gallery>";
-
+                    echo "<a href=\"".implode("/", array_map("rawurlencode", explode("/", $value->getURL())))."\" title=\"".$value->getBaseName()."\" type=\"video/mp4\" data-gallery><img src='".$value->getThumbAddress()."'></a>\n";
                 }
                 $pocet++;
             } ?>
+
+
         </div>
 
     </div>

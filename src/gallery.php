@@ -87,6 +87,14 @@ class Item extends Settings{
         return end((explode('.',$this->path)));
     }
 
+    public function getURL(){
+        return '/'.$this->dataDir.'/'.$this->getPath();
+    }
+
+    public function getThumbAddress(){
+        return "/img/back.png";
+    }
+
 }
 
 
