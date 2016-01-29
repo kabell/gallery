@@ -9,7 +9,7 @@ class Settings{
         UNKNOWN = "unknown";
 
     public
-        $video = Array("mp4","MP4","mov","MOV","avi","AVI","3gp","3GP"),
+        $video = Array("webm"),
         $image = Array("jpg","JPG","jpeg","JPEG","png","PNG"),
         $rootPrefix,
         $dataPrefix,
@@ -48,7 +48,7 @@ class Item extends Settings{
 
         if(is_dir($this->fullPath))
             $this->type = self::DIR;
-        else if(in_array($ex,$this->video) && substr($this->getBaseName(),10)=='converted_')
+        else if(in_array($ex,$this->video) && substr($this->getBaseName(),0,10)=='converted_')
             $this->type = self::VIDEO;
         else if(in_array($ex,$this->image))
             $this->type = self::IMAGE;
@@ -92,7 +92,7 @@ class Item extends Settings{
     }
 
     public function getThumbAddress(){
-        return $this->rootPrefix.'/'.$this->dataDir.'/'.$this->getParentDirectory().'/.thumb/'.$this->getBaseName().'.jpg';
+        return $this->dataDir.'/'.$this->getParentDirectory().'/.thumb/'.$this->getBaseName().".jpg";
     }
 
 }

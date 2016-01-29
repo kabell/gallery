@@ -22,7 +22,7 @@
         <div class='container'>
             <div class='row'>
                 <div class='col-sm-5'>
-                    <?php if($this->getBaseName() != ''): ?><a href='?dir=<?php echo $this->getParentDirectory();?>'><img src='img/back.png'></a><?php endif;?>
+                    <?php if($this->getBaseName() != '' && !isset($_GET['noprev'])): ?><a href='?dir=<?php echo $this->getParentDirectory();?>'><img src='img/back.png'></a><?php endif;?>
                 </div>
                 <div class='col-sm-7'>
                     <h2><?php echo $this->getBaseName() ?></h2>
@@ -84,7 +84,9 @@
                     echo "</a>\n";
                 }
                 else if($value->isVideo()){
-                    echo "<a href=\"".implode("/", array_map("rawurlencode", explode("/", $value->getURL())))."\" title=\"".$value->getBaseName()."\" type=\"video/mp4\" data-gallery><img src='".$value->getThumbAddress()."'></a>\n";
+                    $size = getimagesize($this->rootPrefix.'/'.$value->getThumbAddress());
+
+                    echo "<a href=\"".implode("/", array_map("rawurlencode", explode("/", $value->getURL())))."\" title=\"".$value->getBaseName()."\" type=\"video/mp4\" data-gallery><img class='align' src='".$value->getThumbAddress()."' data-width=\"".$size[0]."\" data-height=\"".$size[1]."\"></a>\n";
                 }
                 $pocet++;
             } ?>
